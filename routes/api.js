@@ -25,8 +25,9 @@ router.post('/notes/add', function(req, res, next){
   }
   var note = req.body.note;
   var userid = req.session.user.id;
-  Note.create({text: note, uid: userid}).then(function(){
-    res.send({status: 0})
+  Note.create({text: note, uid: userid}).then(function(note){
+    addid = note.dataValues.id
+    res.send({status: 0 , noteid:addid})
   }).catch(function(){
     res.send({ status: 1,errorMsg: '数据库异常或者你没有权限'});
   })

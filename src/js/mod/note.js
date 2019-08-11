@@ -124,6 +124,7 @@ Note.prototype = {
     $.post('/api/notes/add', {note: msg})
       .done(function(ret){
         if(ret.status === 0){
+          self.id = ret.noteid 
           Toast('add success');
         }else{
           self.$note.remove();
